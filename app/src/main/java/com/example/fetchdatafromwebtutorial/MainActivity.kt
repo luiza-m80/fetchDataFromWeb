@@ -20,6 +20,17 @@ class MainActivity : AppCompatActivity() {
         fetchCurrencyData().start()
     }
 
+    private fun updateUI(request: Request) {
+        runOnUiThread {
+            kotlin.run {
+                binding.lastUpdated.text = request.time_last_update_utc
+                binding.nzd.text = String.format("NZD: %.2f", request.rates.NZD)
+                binding.usd.text = String.format("USD: %.2f", request.rates.USD)
+                binding.gbp.text = String.format("GBP: %.2f", request.rates.GBP)
+            }
+        }
+    }
+
     private fun fetchCurrencyData(): Thread {
         return Thread {
             val url = URL("https://open.er-api.com/v6/latest/aud")
@@ -34,17 +45,6 @@ class MainActivity : AppCompatActivity() {
                 inputSystem.close()
             } else {
                 binding.baseCurrency.text = "Failed Connection"
-            }
-        }
-    }
-
-    private fun updateUI(request: Request) {
-        runOnUiThread {
-            kotlin.run {
-                binding.lastUpdated.text = request.time_last_update_utc
-                binding.nzd.text = String.format("NZD: %.2f", request.rates.NZD)
-                binding.usd.text = String.format("USD: %.2f", request.rates.USD)
-                binding.gbp.text = String.format("GBP: %.2f", request.rates.GBP)
             }
         }
     }
