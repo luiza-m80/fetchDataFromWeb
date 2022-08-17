@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FetchDataFromWebTutorial</string>
+    <string name="last_updated_txt">Last Updated:</string>
+    <string name="base_currency">AUD: 1.00</string>
+    <string name="nzd_currency">NZD:</string>
+    <string name="usd_currency">USD:</string>
+    <string name="gbp_currency">GBP:</string>
+</resources>
